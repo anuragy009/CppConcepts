@@ -1,0 +1,51 @@
+// Constructor is a special member function with the same name as of the class.
+//It is used to initialize the objects of its class
+//It is automatically invoked whenever an object is created
+//Doesn't have any return types
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------
+#include <iostream>
+using namespace std;
+
+class Complex
+{
+    int a, b;
+
+public:
+
+    Complex(void); // Default Constructor declaration
+    Complex(int, int); // Parametrized Constructor declaration
+
+    void printNumber()
+    {
+        cout << "Your number is " << a << " + " << b << "i" << endl;
+    }
+};
+
+Complex ::Complex(void) 			// ----> Default constructor as it takes no parameters
+{
+    a = 0;
+    b = 0;
+    // cout<<"Hello world";
+}
+
+Complex ::Complex(int x, int y)                // ----> This is a parameterized constructor as it takes 2 parameters
+{
+    a = x;
+    b = y;
+}
+
+int main()
+{
+    Complex c1;
+    c1.printNumber();
+
+    // Implicit call
+    Complex c2(4, 6);
+    c2.printNumber();
+
+    // Explicit call
+    Complex c3 = Complex(5, 7);
+    c3.printNumber();
+
+    return 0;
+}

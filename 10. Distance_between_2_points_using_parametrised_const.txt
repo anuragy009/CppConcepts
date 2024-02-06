@@ -1,0 +1,37 @@
+#include<iostream>
+#include<cmath>
+using namespace std;
+
+class Point{
+    int x, y;
+    public:
+        Point(int a, int b){
+            x = a;
+            y = b;
+        }
+
+        void displayPoint(){
+            cout<<"The point is ("<<x<<", "<<y<<")"<<endl;
+        }
+
+	void distanceBwPoints( Point, Point );
+
+};
+
+void Point :: distanceBwPoints( Point o1, Point o2)
+{
+cout<<"The distance between " << "("<<o1.x<<","<<o1.y<<")  and"<<"("<<o2.x<<","<<o2.y<<")"<<" is ";
+cout<<sqrt(pow((o1.x-o2.x),2)+pow((o1.y-o2.y),2));
+}
+
+int main(){
+    Point p(1, 1);
+    p.displayPoint();
+
+    Point q(4, 6);
+    q.displayPoint();
+    
+    p.distanceBwPoints(p,q);		// or q.distanceBwPoints(p,q); we just need objects to invoke the member function
+    
+    return 0;
+}
