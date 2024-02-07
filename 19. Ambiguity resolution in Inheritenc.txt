@@ -1,0 +1,79 @@
+/* Ambiguity resolution in Inheritence
+
+1. Multiple base classes have member function with sam name, which one to call ?
+2. Base and derived class both have a Function with same name . Under what conditions derived class method will override the base class method and in which case base class method will be called ?
+
+--------------------------------------------------------------------------------------------------------------------------------------------*/
+#include<iostream>
+using namespace std;
+
+class Base1{
+    public:
+        void greet(){
+            cout<<"How are you?"<<endl;
+        }
+};
+
+class Base2{
+    public:
+        void greet()
+        {
+            cout << "Kemon ache?" << endl;
+        }
+};
+
+
+class Derived : public Base1, public Base2{
+   int a;
+   public:
+    void greet(){
+        Base2 :: greet();		// or Base1::greet() depending upon our need
+    }
+};
+
+int main(){
+  // Ambibuity 1
+     Base1 base1obj;
+     Base2 base2obj;
+     base1obj.greet();
+     base2obj.greet();
+     Derived d;
+     d.greet();	// which greet do you think will be called ? Actually, we need to specify in the derived class which greet we want to call
+
+    return 0;
+}
+
+/*----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
+
+#include<iostream>
+using namespace std;
+
+class B{
+    public:
+        void say(){
+            cout<<"Hello world"<<endl;
+        }
+};
+
+class D: public B{
+    int a;
+    // D's new say() method will override base class's say() method , But if D's method was private, d.say() will result in call to B's say() 
+    public:
+        void say()
+        {
+            cout << "Hello my beautiful people" << endl;
+        }
+};
+
+int main(){
+    // Ambibuity 2
+    B b;
+    b.say();
+
+    D d;
+    d.say();
+
+    return 0;
+}
+
+/*----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
