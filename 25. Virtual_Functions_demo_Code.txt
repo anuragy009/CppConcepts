@@ -1,0 +1,70 @@
+#include<iostream>
+#include<string>
+using namespace std;
+
+class CodeLib{
+    protected:
+        string title;
+        float rating;
+    public:
+        CodeLib(string s, float r){
+            title =  s;
+            rating = r;
+        }
+        virtual void display(){}
+};
+
+class CodeLibVideo: public CodeLib
+{
+    float videoLength;
+    public:
+        CodeLibVideo(string s, float r, float vl): CodeLib(s, r){
+            videoLength = vl;
+        }
+        void display(){
+            cout<<"This title of this tutorial video is : "<<title<<endl;
+            cout<<"It's been given a Rating of : "<<rating<<" out of 5 stars"<<endl;
+            cout<<"Length of this video is: "<<videoLength<<" minutes"<<endl;
+        }
+};    
+
+class CodeLibText: public CodeLib
+{
+    int words;
+    public:
+        CodeLibText(string s, float r, int wc): CodeLib(s, r){
+            words = wc;
+        }
+     void display(){
+      cout<<"This text tutorial is titled as "<<title<<endl;
+      cout<<"Ratings of this text tutorial: "<<rating<<" out of 5 stars"<<endl;
+      cout<<"No of words in this text tutorial is: "<<words<<" words"<<endl;
+         }
+};
+
+int main(){
+    string title;
+    float rating, vlen;
+    int words;
+
+    // for CodeLib Video tutorial
+    title = "JavaScript Basics";
+    vlen = 4.56;
+    rating = 4.89;
+    CodeLibVideo JSVideo(title, rating, vlen);
+
+    // for CodeLib Text tutorial
+    title = "Java Script Text";
+    words = 433;
+    rating = 4.19;
+    CodeLibText JSText(title, rating, words);
+
+    CodeLib* tuts[2];
+    tuts[0] = &JSVideo;
+    tuts[1] = &JSText;
+
+    tuts[0]->display();
+    tuts[1]->display();
+
+    return 0;
+}
